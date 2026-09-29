@@ -7,22 +7,116 @@
 
   <title>Publications | Kristoffer Rank Rasmussen</title>
 
+  <!-- Load saved theme -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (
+        savedTheme === "dark" ||
+        (!savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+    /* =========================
+       DAY MODE
+       ========================= */
+
+    :root {
+      --text: #555555;
+      --heading: #555555;
+      --secondary: #777777;
+      --border: #e5e5e5;
+
+      --nav: #078d55;
+      --nav-active: #075f3d;
+
+      --link: #1671c4;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #888888;
+    }
+
+
+    /* =========================
+       DARK MODE
+       ========================= */
+
+    html.dark {
+      --text: #c4c4c4;
+      --heading: #d6d6d6;
+      --secondary: #aaaaaa;
+      --border: #484848;
+
+      --nav: #65c990;
+      --nav-active: #9bd8b5;
+
+      --link: #79aee3;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #9e9e9e;
+    }
+
+
+    /* =========================
+       BODY
+       ========================= */
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #555;
-      background: white;
+      color: var(--text);
+      background: #ffffff;
       line-height: 1.7;
+      min-height: 100vh;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease;
     }
 
-    /* Header */
+    /* Neutral dark-grey gradient */
+    html.dark body {
+      background:
+        linear-gradient(
+          125deg,
+          #181818 0%,
+          #222222 50%,
+          #303030 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
     .hero {
-      background: linear-gradient(120deg, #0d3b2e, #2ca56b);
+      position: relative;
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--hero-start),
+          var(--hero-end)
+        );
+
       color: white;
       text-align: center;
       padding: 70px 20px 75px;
@@ -33,6 +127,7 @@
       font-size: 54px;
       font-weight: 600;
       letter-spacing: 0.5px;
+      color: #ffffff;
     }
 
     .hero p {
@@ -43,55 +138,116 @@
       text-align: center;
     }
 
-    /* Main page width */
+    html.dark .hero h1 {
+      color: #eeeeea;
+    }
+
+    html.dark .hero p {
+      color: #d5d5d1;
+    }
+
+
+    /* =========================
+       DAY / NIGHT BUTTON
+       ========================= */
+
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
+
+      font-size: 21px;
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.20);
+      transform: scale(1.05);
+    }
+
+
+    /* =========================
+       MAIN PAGE WIDTH
+       ========================= */
+
     .container {
       max-width: 1050px;
       margin: 0 auto;
       padding: 0 25px;
     }
 
-    /* Navigation */
+
+    /* =========================
+       NAVIGATION
+       ========================= */
+
     nav {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid var(--border);
       padding: 30px 0 25px;
     }
 
     nav a {
       display: inline-block;
       margin-right: 35px;
-      color: #078d55;
+      color: var(--nav);
       text-decoration: none;
       font-size: 19px;
     }
 
     nav a:hover {
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
     nav a.active {
       font-weight: 600;
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
-    /* Main content */
+
+    /* =========================
+       MAIN CONTENT
+       ========================= */
+
     main {
       padding: 55px 15px 80px;
       width: 100%;
     }
 
     h2 {
-      color: #555;
+      color: var(--heading);
       font-size: 27px;
       margin-top: 0;
       margin-bottom: 35px;
     }
 
     h3 {
-      color: #555;
+      color: var(--heading);
       font-size: 23px;
       margin-top: 45px;
       margin-bottom: 25px;
     }
+
+
+    /* =========================
+       PUBLICATIONS
+       ========================= */
 
     .publication {
       max-width: 900px;
@@ -106,7 +262,7 @@
     }
 
     .publication-title a {
-      color: #1671c4;
+      color: var(--link);
       text-decoration: none;
     }
 
@@ -117,21 +273,25 @@
     .authors {
       font-size: 17px;
       margin-bottom: 8px;
-      color: #555;
+      color: var(--text);
     }
 
     .publication-info {
       font-size: 16px;
-      color: #777;
+      color: var(--secondary);
       margin-bottom: 12px;
     }
 
     .publication-note {
       font-size: 15px;
-      color: #777;
+      color: var(--secondary);
       max-width: 800px;
       margin-top: 12px;
       margin-bottom: 14px;
+    }
+
+    .publication-note strong {
+      color: var(--text);
     }
 
     .publication-links {
@@ -145,7 +305,7 @@
     }
 
     .publication-links a {
-      color: #1671c4;
+      color: var(--link);
       text-decoration: none;
     }
 
@@ -153,15 +313,23 @@
       text-decoration: underline;
     }
 
-    /* Footer */
+
+    /* =========================
+       FOOTER
+       ========================= */
+
     footer {
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid var(--border);
       padding: 25px 0 40px;
       font-size: 14px;
-      color: #888;
+      color: var(--footer);
     }
 
-    /* Mobile */
+
+    /* =========================
+       MOBILE
+       ========================= */
+
     @media (max-width: 700px) {
 
       .hero {
@@ -173,6 +341,14 @@
       }
 
       .hero p {
+        font-size: 19px;
+      }
+
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
         font-size: 19px;
       }
 
@@ -193,16 +369,35 @@
 
 <body>
 
-  <!-- Header -->
+
+  <!-- =========================
+       HEADER
+       ========================= -->
+
   <header class="hero">
+
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Switch between light and dark mode"
+      title="Switch between light and dark mode">
+      ☾
+    </button>
+
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
+
   </header>
 
 
   <div class="container">
 
-    <!-- Navigation -->
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
     <nav>
       <a href="index.html">About</a>
       <a href="cv.html">CV &amp; Contact</a>
@@ -217,21 +412,27 @@
       <h2>Publications</h2>
 
 
-      <!-- 2026 -->
+      <!-- =========================
+           2026
+           ========================= -->
+
       <h3>2026</h3>
 
       <div class="publication">
 
         <div class="publication-title">
-          <a href="https://arxiv.org/abs/2312.16645"
-             target="_blank"
-             rel="noopener noreferrer">
-            Hochschild cohomology of the second kind: Koszul duality and Morita invariance
+          <a
+            href="https://arxiv.org/abs/2312.16645"
+            target="_blank"
+            rel="noopener noreferrer">
+            Hochschild cohomology of the second kind:
+            Koszul duality and Morita invariance
           </a>
         </div>
 
         <div class="authors">
-          Ai Guan, Julian Holstein, Andrey Lazarev and Kristoffer Rank Rasmussen
+          Ai Guan, Julian Holstein, Andrey Lazarev and
+          Kristoffer Rank Rasmussen
         </div>
 
         <div class="publication-info">
@@ -239,16 +440,18 @@
         </div>
 
         <div class="publication-note">
-          <strong>Note:</strong> The arXiv version will be updated shortly
-          to reflect the latest version of the manuscript, including the
-          updated author list.
+          <strong>Note:</strong>
+          The arXiv version will be updated shortly to reflect the
+          latest version of the manuscript, including the updated
+          author list.
         </div>
 
         <ul class="publication-links">
           <li>
-            <a href="https://arxiv.org/abs/2312.16645"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+              href="https://arxiv.org/abs/2312.16645"
+              target="_blank"
+              rel="noopener noreferrer">
               arXiv:2312.16645
             </a>
           </li>
@@ -257,16 +460,21 @@
       </div>
 
 
-      <!-- 2025 -->
+      <!-- =========================
+           2025
+           ========================= -->
+
       <h3>2025</h3>
 
       <div class="publication">
 
         <div class="publication-title">
-          <a href="https://arxiv.org/abs/2511.03500"
-             target="_blank"
-             rel="noopener noreferrer">
-            An injective Model for Twisted Derived Categories and Curved Koszul Triality
+          <a
+            href="https://arxiv.org/abs/2511.03500"
+            target="_blank"
+            rel="noopener noreferrer">
+            An injective Model for Twisted Derived Categories
+            and Curved Koszul Triality
           </a>
         </div>
 
@@ -280,9 +488,10 @@
 
         <ul class="publication-links">
           <li>
-            <a href="https://arxiv.org/abs/2511.03500"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+              href="https://arxiv.org/abs/2511.03500"
+              target="_blank"
+              rel="noopener noreferrer">
               arXiv:2511.03500
             </a>
           </li>
@@ -293,11 +502,107 @@
     </main>
 
 
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer>
       © 2026 Kristoffer Rank Rasmussen
     </footer>
 
+
   </div>
+
+
+  <!-- =========================
+       DAY / NIGHT MODE
+       ========================= -->
+
+  <script>
+
+    const themeToggle =
+      document.getElementById("theme-toggle");
+
+
+    function updateThemeButton() {
+
+      if (
+        document.documentElement
+          .classList
+          .contains("dark")
+      ) {
+
+        themeToggle.textContent = "☀";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to light mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to light mode"
+        );
+
+      } else {
+
+        themeToggle.textContent = "☾";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to dark mode"
+        );
+
+      }
+
+    }
+
+
+    updateThemeButton();
+
+
+    themeToggle.addEventListener(
+      "click",
+      function () {
+
+        document.documentElement
+          .classList
+          .toggle("dark");
+
+
+        if (
+          document.documentElement
+            .classList
+            .contains("dark")
+        ) {
+
+          localStorage.setItem(
+            "theme",
+            "dark"
+          );
+
+        } else {
+
+          localStorage.setItem(
+            "theme",
+            "light"
+          );
+
+        }
+
+
+        updateThemeButton();
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
