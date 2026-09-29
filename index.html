@@ -20,7 +20,7 @@
       line-height: 1.7;
     }
 
-    /* Top section */
+    /* Header */
     .hero {
       background: linear-gradient(120deg, #0d3b2e, #2ca56b);
       color: white;
@@ -36,9 +36,11 @@
     }
 
     .hero p {
-      margin: 15px 0 0;
+      margin: 15px auto 0;
       font-size: 22px;
       color: rgba(255, 255, 255, 0.8);
+      max-width: none;
+      text-align: center;
     }
 
     /* Main page width */
@@ -71,46 +73,53 @@
       color: #075f3d;
     }
 
-    /* Page content */
-  main {
-  padding: 55px 15px 80px;
-  width: 100%;
-}
-
-.about-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 80px;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.about-text {
-  flex: 1;
-}
-
-.profile-photo {
-  width: 280px;
-  height: auto;
-  border-radius: 3px;
-}
+    /* Main content */
+    main {
+      padding: 55px 15px 80px;
+      width: 100%;
+    }
 
     h2 {
       color: #555;
-      font-size: 25px;
+      font-size: 27px;
       margin-top: 0;
       margin-bottom: 30px;
     }
 
+    h3 {
+      color: #555;
+      font-size: 21px;
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+
     p {
-      font-size: 18px;
-      margin-bottom: 22px;
+      font-size: 17px;
+      margin-bottom: 20px;
     }
 
-    main a {
-      color: #1671c4;
+    /* About layout */
+    .about-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 80px;
+      align-items: flex-start;
+      width: 100%;
     }
 
+    .about-text {
+      flex: 1;
+      max-width: 650px;
+    }
+
+    .profile-photo {
+      width: 280px;
+      height: auto;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
     footer {
       border-top: 1px solid #e5e5e5;
       padding: 25px 0 40px;
@@ -118,18 +127,11 @@
       color: #888;
     }
 
-    /* Mobile phones */
+    /* Mobile */
     @media (max-width: 700px) {
+
       .hero {
         padding: 50px 20px;
-      .about-content {
-  flex-direction: column;
-}
-
-.profile-photo {
-  width: 100%;
-  max-width: 300px;
-}
       }
 
       .hero h1 {
@@ -149,13 +151,29 @@
       main {
         padding-top: 40px;
       }
+
+      .about-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .about-text {
+        max-width: none;
+      }
+
+      .profile-photo {
+        width: 100%;
+        max-width: 300px;
+      }
     }
+
   </style>
 </head>
 
 
 <body>
 
+  <!-- Header -->
   <header class="hero">
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
@@ -164,6 +182,7 @@
 
   <div class="container">
 
+    <!-- Navigation -->
     <nav>
       <a class="active" href="index.html">About</a>
       <a href="cv.html">CV &amp; Contact</a>
@@ -175,32 +194,50 @@
 
     <main>
 
-  <h2>Welcome to my page!</h2>
+      <h2>Welcome to my page!</h2>
 
-  <div class="about-content">
+      <div class="about-content">
 
-    <div class="about-text">
+        <!-- Text -->
+        <div class="about-text">
 
-      <p>
-        Welcome to my personal homepage.
-      </p>
+          <p>
+            I am a PhD student in the Algebra and Number Theory group at the
+            University of Hamburg, under the supervision of
+            Prof. Dr. Julian Holstein. I started my PhD in October 2024 and
+            expect to complete it in spring 2027.
+          </p>
 
-      <p>
-        I am a mathematician. More information about my research,
-        academic background, and current work will be added here.
-      </p>
 
-    </div>
+          <h3>Research</h3>
 
-    <img
-      src="Billede_K.jpg"
-      alt="Kristoffer Rank Rasmussen"
-      class="profile-photo"
-    >
+          <p>
+            My research focuses on derived categories of the second kind,
+            global Koszul duality, and Hochschild cohomology.
+          </p>
 
-  </div>
+          <p>
+            More specifically, I study compactly generated derived categories
+            associated with dg-algebras, with particular emphasis on identifying
+            classes of dg-algebras for which the compact generators admit an
+            explicit description. A better understanding of these generators
+            provides a route towards computing the Hochschild cohomology of the
+            corresponding compactly generated derived categories.
+          </p>
 
-</main>
+        </div>
+
+
+        <!-- Profile photo -->
+        <img
+          src="Billede_2.jpg"
+          alt="Kristoffer Rank Rasmussen"
+          class="profile-photo"
+        >
+
+      </div>
+
+    </main>
 
 
     <footer>
