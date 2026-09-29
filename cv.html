@@ -152,6 +152,25 @@
       max-width: 760px;
     }
 
+    /* Languages */
+.languages {
+  max-width: 700px;
+  margin-top: 10px;
+}
+
+.language-row {
+  display: grid;
+  grid-template-columns: 195px 1fr;
+  column-gap: 30px;
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.language-row strong {
+  color: #555;
+}
+
+    
     /* Footer */
     footer {
       border-top: 1px solid #e5e5e5;
@@ -270,7 +289,7 @@
 <div class="cv-entry">
 
   <div class="year">
-    Oct 2023–Apr 2027
+    Oct 2023–
   </div>
 
   <div class="cv-details">
@@ -375,27 +394,24 @@
 
 <h3>Languages</h3>
 
-<div class="cv-entry">
-  <div class="year">Danish</div>
-  <div class="cv-details">
-    Native
-  </div>
-</div>
+<div class="languages">
 
-<div class="cv-entry">
-  <div class="year">English</div>
-  <div class="cv-details">
-    Fluent, written and spoken
+  <div class="language-row">
+    <strong>Danish</strong>
+    <span>Native</span>
   </div>
-</div>
 
-<div class="cv-entry">
-  <div class="year">German</div>
-  <div class="cv-details">
-    B2, currently working towards C1
+  <div class="language-row">
+    <strong>English</strong>
+    <span>Fluent, written and spoken</span>
   </div>
-</div>
-      
+
+  <div class="language-row">
+    <strong>German</strong>
+    <span>B2, currently working towards C1</span>
+  </div>
+
+</div>      
     </main>
 
 
