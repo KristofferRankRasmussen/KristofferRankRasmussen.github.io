@@ -20,6 +20,7 @@
       line-height: 1.7;
     }
 
+    /* Header */
     .hero {
       background: linear-gradient(120deg, #0d3b2e, #2ca56b);
       color: white;
@@ -40,12 +41,14 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
+    /* Main page width */
     .container {
       max-width: 1050px;
       margin: 0 auto;
       padding: 0 25px;
     }
 
+    /* Navigation */
     nav {
       border-bottom: 1px solid #e5e5e5;
       padding: 30px 0 25px;
@@ -68,6 +71,7 @@
       color: #075f3d;
     }
 
+    /* Main content */
     main {
       padding: 55px 15px 80px;
       width: 100%;
@@ -75,37 +79,77 @@
 
     h2 {
       color: #555;
-      font-size: 25px;
+      font-size: 27px;
       margin-top: 0;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
     }
 
     h3 {
       color: #555;
-      font-size: 20px;
-      margin-top: 45px;
-      margin-bottom: 15px;
+      font-size: 21px;
+      margin-top: 55px;
+      margin-bottom: 20px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 17px;
       margin-bottom: 18px;
+      max-width: 850px;
     }
 
     main a {
       color: #1671c4;
+      text-decoration: none;
     }
 
+    main a:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact information */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.6fr;
+      gap: 45px;
+      margin-bottom: 55px;
+      font-size: 16px;
+    }
+
+    .contact-grid strong {
+      color: #444;
+    }
+
+    /* CV entries */
     .cv-entry {
-      margin-bottom: 18px;
+      display: flex;
+      gap: 30px;
+      margin-bottom: 35px;
     }
 
     .year {
-      display: inline-block;
       width: 120px;
+      flex-shrink: 0;
       font-weight: 600;
+      color: #555;
     }
 
+    .cv-details {
+      flex: 1;
+      font-size: 17px;
+    }
+
+    .cv-details strong {
+      color: #444;
+    }
+
+    .cv-note {
+      font-size: 16px;
+      margin-top: 15px;
+      margin-bottom: 0;
+      max-width: 760px;
+    }
+
+    /* Footer */
     footer {
       border-top: 1px solid #e5e5e5;
       padding: 25px 0 40px;
@@ -113,7 +157,9 @@
       color: #888;
     }
 
+    /* Mobile */
     @media (max-width: 700px) {
+
       .hero {
         padding: 50px 20px;
       }
@@ -136,17 +182,29 @@
         padding-top: 40px;
       }
 
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .cv-entry {
+        display: block;
+      }
+
       .year {
         display: block;
         width: auto;
+        margin-bottom: 8px;
       }
     }
+
   </style>
 </head>
 
 
 <body>
 
+  <!-- Header -->
   <header class="hero">
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
@@ -155,6 +213,7 @@
 
   <div class="container">
 
+    <!-- Navigation -->
     <nav>
       <a href="index.html">About</a>
       <a class="active" href="cv.html">CV &amp; Contact</a>
@@ -168,42 +227,141 @@
 
       <h2>CV &amp; Contact</h2>
 
+
+      <!-- Contact -->
       <h3>Contact</h3>
 
-      <p>
-        Email: your-email@example.com
-      </p>
+      <div class="contact-grid">
 
-      <p>
-        Department / University<br>
-        Address<br>
-        City, Country
-      </p>
+        <div>
+          <strong>Address</strong><br>
+          University of Hamburg<br>
+          Faculty of Mathematics, Informatics and Natural Sciences<br>
+          Department of Mathematics<br>
+          Bundesstraße 55<br>
+          20146 Hamburg<br>
+          Germany
+        </div>
 
+        <div>
+          <strong>Office</strong><br>
+          Geomatikum<br>
+          Room 340
+        </div>
 
-      <h3>Employment</h3>
+        <div>
+          <strong>Contact</strong><br>
+          Tel: +49 40 42838-5197<br>
+          Email:
+          <a href="mailto:kristoffer.rasmussen@uni-hamburg.de">
+            kristoffer(dot)rasmussen(at)<wbr>uni-hamburg(dot)de
+          </a>
+        </div>
 
-      <div class="cv-entry">
-        <span class="year">20XX–present</span>
-        Position, University
       </div>
 
 
+      <!-- Current position -->
+      <h3>Current position</h3>
+
+      <div class="cv-entry">
+
+        <div class="year">
+          2024–2027
+        </div>
+
+        <div class="cv-details">
+          <strong>PhD in Mathematics</strong><br>
+          Department of Mathematics, University of Hamburg<br>
+          Supervisor: Dr. Julian Holstein
+        </div>
+
+      </div>
+
+      <p>
+        I am a PhD student in the Algebra and Number Theory group at the
+        University of Hamburg. I started my PhD in October 2024 and expect
+        to complete it in April 2027.
+      </p>
+
+
+      <!-- Research -->
+      <h3>Research</h3>
+
+      <p>
+        My research focuses on derived categories of the second kind,
+        global Koszul duality, and Hochschild cohomology.
+      </p>
+
+      <p>
+        More specifically, I study compactly generated derived categories
+        associated with dg-algebras, with particular emphasis on identifying
+        classes of dg-algebras for which the compact generators admit an
+        explicit description. A better understanding of these generators
+        provides a route towards computing the Hochschild cohomology of the
+        corresponding compactly generated derived categories.
+      </p>
+
+
+      <!-- Education -->
       <h3>Education</h3>
 
+
+      <!-- Master's degree -->
       <div class="cv-entry">
-        <span class="year">20XX–20XX</span>
-        PhD in Mathematics, University
+
+        <div class="year">
+          2020–2022
+        </div>
+
+        <div class="cv-details">
+
+          <strong>MSc in Mathematics</strong><br>
+          University of Copenhagen<br>
+          Specialization in algebraic topology and category theory
+
+          <p class="cv-note">
+            <strong>Master's thesis:</strong>
+            <em>One-dimensional factorization homology and string-nets</em>
+          </p>
+
+          <p class="cv-note">
+            In my master's thesis, I studied factorization homology and
+            string-nets. The main result establishes an equivalence between
+            Kirillov's string-net functor and one-dimensional factorization
+            homology with coefficients in a pivotal fusion category.
+          </p>
+
+          <p class="cv-note">
+            <strong>Supervisor:</strong>
+            Lukas Jannik Woike, formerly at the Department of Mathematics,
+            University of Copenhagen, and currently Professeur Junior at
+            Université Bourgogne Europe and the Institut de Mathématiques
+            de Bourgogne (IMB), Dijon.
+          </p>
+
+          <p class="cv-note">
+            <strong>ERASMUS exchange:</strong>
+            Freie Universität Berlin, 30 ECTS.
+          </p>
+
+        </div>
+
       </div>
 
-      <div class="cv-entry">
-        <span class="year">20XX–20XX</span>
-        MSc in Mathematics, University
-      </div>
 
+      <!-- Bachelor's degree -->
       <div class="cv-entry">
-        <span class="year">20XX–20XX</span>
-        BSc in Mathematics, University
+
+        <div class="year">
+          2016–2020
+        </div>
+
+        <div class="cv-details">
+          <strong>BSc in Mathematics</strong><br>
+          University of Copenhagen
+        </div>
+
       </div>
 
     </main>
