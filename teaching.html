@@ -7,33 +7,131 @@
 
   <title>Teaching | Kristoffer Rank Rasmussen</title>
 
+  <!-- Load saved theme -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (
+        savedTheme === "dark" ||
+        (!savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+    /* =========================
+       DAY MODE
+       ========================= */
+
+    :root {
+      --text: #555555;
+      --heading: #555555;
+      --strong: #444444;
+      --secondary: #777777;
+      --course-text: #666666;
+      --border: #e5e5e5;
+
+      --nav: #078d55;
+      --nav-active: #075f3d;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #888888;
+    }
+
+
+    /* =========================
+       DARK MODE
+       ========================= */
+
+    html.dark {
+      --text: #c4c4c4;
+      --heading: #d6d6d6;
+      --strong: #d0d0d0;
+      --secondary: #aaaaaa;
+      --course-text: #b5b5b5;
+      --border: #484848;
+
+      --nav: #65c990;
+      --nav-active: #9bd8b5;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #9e9e9e;
+    }
+
+
+    /* =========================
+       BODY
+       ========================= */
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #555;
-      background: white;
+      color: var(--text);
+      background: #ffffff;
       line-height: 1.7;
+      min-height: 100vh;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease;
     }
 
-    /* Header */
+
+    /* Neutral dark-grey gradient */
+    html.dark body {
+      background:
+        linear-gradient(
+          125deg,
+          #181818 0%,
+          #222222 50%,
+          #303030 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
     .hero {
-      background: linear-gradient(120deg, #0d3b2e, #2ca56b);
+      position: relative;
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--hero-start),
+          var(--hero-end)
+        );
+
       color: white;
       text-align: center;
       padding: 70px 20px 75px;
     }
+
 
     .hero h1 {
       margin: 0;
       font-size: 54px;
       font-weight: 600;
       letter-spacing: 0.5px;
+      color: #ffffff;
     }
+
 
     .hero p {
       margin: 15px auto 0;
@@ -43,62 +141,128 @@
       text-align: center;
     }
 
-    /* Main page width */
+
+    html.dark .hero h1 {
+      color: #eeeeea;
+    }
+
+
+    html.dark .hero p {
+      color: #d5d5d1;
+    }
+
+
+    /* =========================
+       DAY / NIGHT BUTTON
+       ========================= */
+
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
+
+      font-size: 21px;
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.20);
+      transform: scale(1.05);
+    }
+
+
+    /* =========================
+       MAIN PAGE WIDTH
+       ========================= */
+
     .container {
       max-width: 1050px;
       margin: 0 auto;
       padding: 0 25px;
     }
 
-    /* Navigation */
+
+    /* =========================
+       NAVIGATION
+       ========================= */
+
     nav {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid var(--border);
       padding: 30px 0 25px;
     }
+
 
     nav a {
       display: inline-block;
       margin-right: 35px;
-      color: #078d55;
+      color: var(--nav);
       text-decoration: none;
       font-size: 19px;
     }
 
+
     nav a:hover {
-      color: #075f3d;
+      color: var(--nav-active);
     }
+
 
     nav a.active {
       font-weight: 600;
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
-    /* Main content */
+
+    /* =========================
+       MAIN CONTENT
+       ========================= */
+
     main {
       padding: 55px 15px 80px;
       width: 100%;
     }
 
+
     h2 {
-      color: #555;
+      color: var(--heading);
       font-size: 27px;
       margin-top: 0;
       margin-bottom: 25px;
     }
 
+
     h3 {
-      color: #555;
+      color: var(--heading);
       font-size: 22px;
       margin-top: 55px;
       margin-bottom: 25px;
     }
 
+
     h4 {
-      color: #444;
+      color: var(--strong);
       font-size: 18px;
       margin-top: 35px;
       margin-bottom: 3px;
     }
+
 
     p {
       font-size: 17px;
@@ -106,17 +270,20 @@
       max-width: 850px;
     }
 
+
     .period {
       margin-top: 0;
-      color: #777;
+      color: var(--secondary);
       font-style: italic;
     }
+
 
     .courses-title {
       margin-bottom: 8px;
       font-weight: 600;
-      color: #555;
+      color: var(--heading);
     }
+
 
     ul {
       margin-top: 5px;
@@ -125,50 +292,78 @@
       max-width: 850px;
     }
 
+
     li {
       font-size: 17px;
       margin-bottom: 12px;
     }
+
+
+    li strong {
+      color: var(--strong);
+    }
+
 
     /* Additional information about individual courses */
     .course-description {
       display: block;
       margin-top: 5px;
       margin-bottom: 15px;
-      color: #666;
+      color: var(--course-text);
       font-size: 16px;
       line-height: 1.65;
       max-width: 800px;
     }
 
-    /* Footer */
+
+    /* =========================
+       FOOTER
+       ========================= */
+
     footer {
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid var(--border);
       padding: 25px 0 40px;
       font-size: 14px;
-      color: #888;
+      color: var(--footer);
     }
 
-    /* Mobile */
+
+    /* =========================
+       MOBILE
+       ========================= */
+
     @media (max-width: 700px) {
 
       .hero {
         padding: 50px 20px;
       }
 
+
       .hero h1 {
         font-size: 38px;
       }
 
+
       .hero p {
         font-size: 19px;
       }
+
+
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+      }
+
 
       nav a {
         margin-right: 18px;
         margin-bottom: 8px;
         font-size: 17px;
       }
+
 
       main {
         padding-top: 40px;
@@ -181,16 +376,35 @@
 
 <body>
 
-  <!-- Header -->
+
+  <!-- =========================
+       HEADER
+       ========================= -->
+
   <header class="hero">
+
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Switch between light and dark mode"
+      title="Switch between light and dark mode">
+      ☾
+    </button>
+
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
+
   </header>
 
 
   <div class="container">
 
-    <!-- Navigation -->
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
     <nav>
       <a href="index.html">About</a>
       <a href="cv.html">CV &amp; Contact</a>
@@ -210,7 +424,10 @@
       </p>
 
 
-      <!-- University of Hamburg -->
+      <!-- =========================
+           UNIVERSITY OF HAMBURG
+           ========================= -->
+
       <h3>University of Hamburg</h3>
 
       <h4>Teaching during PhD studies</h4>
@@ -235,20 +452,24 @@
           </span>
         </li>
 
+
         <li>
           <strong>Mathematics III for Physics Students</strong> —
           Winter Semester 2025–26
         </li>
+
 
         <li>
           <strong>Mathematics II for Physics Students</strong> —
           Summer Semester 2025
         </li>
 
+
         <li>
           <strong>Mathematics I for Physics Students</strong> —
           Winter Semester 2024–25
         </li>
+
 
         <li>
           <strong>Advanced Algebra</strong> — Summer Semester 2024
@@ -264,11 +485,15 @@
       </ul>
 
 
-      <!-- University of Copenhagen -->
+      <!-- =========================
+           UNIVERSITY OF COPENHAGEN
+           ========================= -->
+
       <h3>University of Copenhagen</h3>
 
 
       <!-- After MSc -->
+
       <h4>Teaching Assistant</h4>
       <p class="period">September 2022 – January 2023</p>
 
@@ -287,14 +512,17 @@
           <strong>Linear Algebra</strong> — 2022
         </li>
 
+
         <li>
           <strong>Introduction to Mathematics for the Chemical Sciences</strong>
           — 2022
         </li>
 
+
         <li>
           <strong>Introduction to the Mathematical Sciences</strong> — 2022
         </li>
+
 
         <li>
           <strong>Discrete Mathematical Methods</strong> — 2022
@@ -309,6 +537,7 @@
 
 
       <!-- During MSc -->
+
       <h4>Teaching Assistant alongside MSc studies</h4>
       <p class="period">September 2019 – August 2022</p>
 
@@ -326,10 +555,12 @@
           <strong>Discrete Mathematical Methods</strong> — 2021, 2022
         </li>
 
+
         <li>
           <strong>Introduction to the Mathematical Sciences</strong> —
           2019, 2020, 2022
         </li>
+
 
         <li>
           <strong>Mathematical Study Café</strong> —
@@ -341,11 +572,107 @@
     </main>
 
 
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
     <footer>
       © 2026 Kristoffer Rank Rasmussen
     </footer>
 
+
   </div>
+
+
+  <!-- =========================
+       DAY / NIGHT MODE
+       ========================= -->
+
+  <script>
+
+    const themeToggle =
+      document.getElementById("theme-toggle");
+
+
+    function updateThemeButton() {
+
+      if (
+        document.documentElement
+          .classList
+          .contains("dark")
+      ) {
+
+        themeToggle.textContent = "☀";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to light mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to light mode"
+        );
+
+      } else {
+
+        themeToggle.textContent = "☾";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to dark mode"
+        );
+
+      }
+
+    }
+
+
+    updateThemeButton();
+
+
+    themeToggle.addEventListener(
+      "click",
+      function () {
+
+        document.documentElement
+          .classList
+          .toggle("dark");
+
+
+        if (
+          document.documentElement
+            .classList
+            .contains("dark")
+        ) {
+
+          localStorage.setItem(
+            "theme",
+            "dark"
+          );
+
+        } else {
+
+          localStorage.setItem(
+            "theme",
+            "light"
+          );
+
+        }
+
+
+        updateThemeButton();
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
