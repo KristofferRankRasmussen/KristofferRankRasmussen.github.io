@@ -77,6 +77,22 @@
       max-width: 850px;
     }
 
+    .about-content {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.profile-photo {
+  width: 280px;
+  height: auto;
+  border-radius: 3px;
+}
+
     h2 {
       color: #555;
       font-size: 25px;
@@ -104,6 +120,14 @@
     @media (max-width: 700px) {
       .hero {
         padding: 50px 20px;
+      .about-content {
+  flex-direction: column;
+}
+
+.profile-photo {
+  width: 100%;
+  max-width: 300px;
+}
       }
 
       .hero h1 {
@@ -149,7 +173,11 @@
 
     <main>
 
-      <h2>Welcome to my page!</h2>
+  <h2>Welcome to my page!</h2>
+
+  <div class="about-content">
+
+    <div class="about-text">
 
       <p>
         Welcome to my personal homepage.
@@ -160,7 +188,17 @@
         academic background, and current work will be added here.
       </p>
 
-    </main>
+    </div>
+
+    <img
+      src="Billede_2.jpg"
+      alt="Kristoffer Rank Rasmussen"
+      class="profile-photo"
+    >
+
+  </div>
+
+</main>
 
 
     <footer>
