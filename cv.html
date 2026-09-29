@@ -5,24 +5,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CV & Contact | Kristoffer Rank Rasmussen</title>
+  <title>CV &amp; Contact | Kristoffer Rank Rasmussen</title>
+
+  <!-- Load saved theme -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (
+        savedTheme === "dark" ||
+        (!savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+    /* =========================
+       DAY MODE
+       ========================= */
+
+    :root {
+      --text: #555555;
+      --heading: #555555;
+      --strong: #444444;
+      --secondary: #777777;
+      --border: #e5e5e5;
+
+      --nav: #078d55;
+      --nav-active: #075f3d;
+
+      --link: #1671c4;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #888888;
+    }
+
+
+    /* =========================
+       DARK MODE
+       ========================= */
+
+    html.dark {
+      --text: #c4c4c4;
+      --heading: #d6d6d6;
+      --strong: #d0d0d0;
+      --secondary: #aaaaaa;
+      --border: #484848;
+
+      --nav: #65c990;
+      --nav-active: #9bd8b5;
+
+      --link: #79aee3;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #9e9e9e;
+    }
+
+
+    /* =========================
+       BODY
+       ========================= */
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #555;
-      background: white;
+      color: var(--text);
+      background: #ffffff;
       line-height: 1.7;
+      min-height: 100vh;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease;
     }
 
-    /* Header */
+    /* Neutral dark-grey gradient */
+    html.dark body {
+      background:
+        linear-gradient(
+          125deg,
+          #181818 0%,
+          #222222 50%,
+          #303030 100%
+        );
+
+      background-attachment: fixed;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
     .hero {
-      background: linear-gradient(120deg, #0d3b2e, #2ca56b);
+      position: relative;
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--hero-start),
+          var(--hero-end)
+        );
+
       color: white;
       text-align: center;
       padding: 70px 20px 75px;
@@ -33,61 +129,118 @@
       font-size: 54px;
       font-weight: 600;
       letter-spacing: 0.5px;
+      color: #ffffff;
     }
 
-  .hero p {
-  margin: 15px auto 0;
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: none;
-  text-align: center;
-}
+    .hero p {
+      margin: 15px auto 0;
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: none;
+      text-align: center;
+    }
 
-    /* Main page width */
+    html.dark .hero h1 {
+      color: #eeeeea;
+    }
+
+    html.dark .hero p {
+      color: #d5d5d1;
+    }
+
+
+    /* =========================
+       DAY / NIGHT BUTTON
+       ========================= */
+
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
+
+      font-size: 21px;
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.20);
+      transform: scale(1.05);
+    }
+
+
+    /* =========================
+       MAIN PAGE WIDTH
+       ========================= */
+
     .container {
       max-width: 1050px;
       margin: 0 auto;
       padding: 0 25px;
     }
 
-    /* Navigation */
+
+    /* =========================
+       NAVIGATION
+       ========================= */
+
     nav {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid var(--border);
       padding: 30px 0 25px;
     }
 
     nav a {
       display: inline-block;
       margin-right: 35px;
-      color: #078d55;
+      color: var(--nav);
       text-decoration: none;
       font-size: 19px;
     }
 
     nav a:hover {
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
     nav a.active {
       font-weight: 600;
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
-    /* Main content */
+
+    /* =========================
+       MAIN CONTENT
+       ========================= */
+
     main {
       padding: 55px 15px 80px;
       width: 100%;
     }
 
     h2 {
-      color: #555;
+      color: var(--heading);
       font-size: 27px;
       margin-top: 0;
       margin-bottom: 35px;
     }
 
     h3 {
-      color: #555;
+      color: var(--heading);
       font-size: 21px;
       margin-top: 55px;
       margin-bottom: 20px;
@@ -100,7 +253,7 @@
     }
 
     main a {
-      color: #1671c4;
+      color: var(--link);
       text-decoration: none;
     }
 
@@ -108,7 +261,11 @@
       text-decoration: underline;
     }
 
-    /* Contact information */
+
+    /* =========================
+       CONTACT INFORMATION
+       ========================= */
+
     .contact-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1.6fr;
@@ -118,23 +275,27 @@
     }
 
     .contact-grid strong {
-      color: #444;
+      color: var(--strong);
     }
 
-    /* CV entries */
+
+    /* =========================
+       CV ENTRIES
+       ========================= */
+
     .cv-entry {
       display: flex;
       gap: 30px;
       margin-bottom: 35px;
     }
 
-   .year {
-  width: 195px;
-  flex-shrink: 0;
-  font-weight: 600;
-  color: #555;
-  white-space: nowrap;
-}
+    .year {
+      width: 195px;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
 
     .cv-details {
       flex: 1;
@@ -142,7 +303,7 @@
     }
 
     .cv-details strong {
-      color: #444;
+      color: var(--strong);
     }
 
     .cv-note {
@@ -152,34 +313,45 @@
       max-width: 760px;
     }
 
-    /* Languages */
-.languages {
-  max-width: 700px;
-  margin-top: 10px;
-}
 
-.language-row {
-  display: grid;
-  grid-template-columns: 195px 1fr;
-  column-gap: 30px;
-  margin-bottom: 10px;
-  font-size: 17px;
-}
+    /* =========================
+       LANGUAGES
+       ========================= */
 
-.language-row strong {
-  color: #555;
-}
-
-    
-    /* Footer */
-    footer {
-      border-top: 1px solid #e5e5e5;
-      padding: 25px 0 40px;
-      font-size: 14px;
-      color: #888;
+    .languages {
+      max-width: 700px;
+      margin-top: 10px;
     }
 
-    /* Mobile */
+    .language-row {
+      display: grid;
+      grid-template-columns: 195px 1fr;
+      column-gap: 30px;
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .language-row strong {
+      color: var(--text);
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0 40px;
+      font-size: 14px;
+      color: var(--footer);
+    }
+
+
+    /* =========================
+       MOBILE
+       ========================= */
+
     @media (max-width: 700px) {
 
       .hero {
@@ -191,6 +363,14 @@
       }
 
       .hero p {
+        font-size: 19px;
+      }
+
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
         font-size: 19px;
       }
 
@@ -218,6 +398,11 @@
         width: auto;
         margin-bottom: 8px;
       }
+
+      .language-row {
+        grid-template-columns: 110px 1fr;
+        column-gap: 20px;
+      }
     }
 
   </style>
@@ -226,16 +411,35 @@
 
 <body>
 
-  <!-- Header -->
+
+  <!-- =========================
+       HEADER
+       ========================= -->
+
   <header class="hero">
+
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Switch between light and dark mode"
+      title="Switch between light and dark mode">
+      ☾
+    </button>
+
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
+
   </header>
 
 
   <div class="container">
 
-    <!-- Navigation -->
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
     <nav>
       <a href="index.html">About</a>
       <a class="active" href="cv.html">CV &amp; Contact</a>
@@ -250,7 +454,10 @@
       <h2>CV &amp; Contact</h2>
 
 
-      <!-- Contact -->
+      <!-- =========================
+           CONTACT
+           ========================= -->
+
       <h3>Contact</h3>
 
       <div class="contact-grid">
@@ -283,37 +490,47 @@
       </div>
 
 
-      <!-- Academic positions -->
-<h3>Academic positions</h3>
+      <!-- =========================
+           ACADEMIC POSITIONS
+           ========================= -->
 
-<div class="cv-entry">
+      <h3>Academic positions</h3>
 
-  <div class="year">
-    Oct 2023–
-  </div>
 
-  <div class="cv-details">
-    <strong>PhD Student in Mathematics</strong><br>
-    Department of Mathematics, University of Hamburg<br>
-    Algebra and Number Theory group<br>
-    Supervisor: Prof. Dr. Julian Holstein
-  </div>
+      <div class="cv-entry">
 
-</div>
+        <div class="year">
+          Oct 2023–
+        </div>
 
-<div class="cv-entry">
+        <div class="cv-details">
+          <strong>PhD Student in Mathematics</strong><br>
+          Department of Mathematics, University of Hamburg<br>
+          Algebra and Number Theory group<br>
+          Supervisor: Prof. Dr. Julian Holstein
+        </div>
 
-  <div class="year">
-    Sep 2022–Jan 2023
-  </div>
+      </div>
 
-  <div class="cv-details">
-    <strong>Teaching Assistant</strong><br>
-    Department of Mathematical Sciences, University of Copenhagen
-  </div>
 
-</div>
-      <!-- Research -->
+      <div class="cv-entry">
+
+        <div class="year">
+          Sep 2022–Jan 2023
+        </div>
+
+        <div class="cv-details">
+          <strong>Teaching Assistant</strong><br>
+          Department of Mathematical Sciences, University of Copenhagen
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           RESEARCH
+           ========================= -->
+
       <h3>Research</h3>
 
       <p>
@@ -331,11 +548,15 @@
       </p>
 
 
-      <!-- Education -->
+      <!-- =========================
+           EDUCATION
+           ========================= -->
+
       <h3>Education</h3>
 
 
       <!-- Master's degree -->
+
       <div class="cv-entry">
 
         <div class="year">
@@ -379,6 +600,7 @@
 
 
       <!-- Bachelor's degree -->
+
       <div class="cv-entry">
 
         <div class="year">
@@ -392,34 +614,136 @@
 
       </div>
 
-<h3>Languages</h3>
 
-<div class="languages">
+      <!-- =========================
+           LANGUAGES
+           ========================= -->
 
-  <div class="language-row">
-    <strong>Danish</strong>
-    <span>Native</span>
-  </div>
+      <h3>Languages</h3>
 
-  <div class="language-row">
-    <strong>English</strong>
-    <span>Fluent, written and spoken</span>
-  </div>
+      <div class="languages">
 
-  <div class="language-row">
-    <strong>German</strong>
-    <span>B2, currently working towards C1</span>
-  </div>
+        <div class="language-row">
+          <strong>Danish</strong>
+          <span>Native</span>
+        </div>
 
-</div>      
+        <div class="language-row">
+          <strong>English</strong>
+          <span>Fluent, written and spoken</span>
+        </div>
+
+        <div class="language-row">
+          <strong>German</strong>
+          <span>B2, currently working towards C1</span>
+        </div>
+
+      </div>
+
     </main>
 
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
 
     <footer>
       © 2026 Kristoffer Rank Rasmussen
     </footer>
 
+
   </div>
+
+
+  <!-- =========================
+       DAY / NIGHT MODE
+       ========================= -->
+
+  <script>
+
+    const themeToggle =
+      document.getElementById("theme-toggle");
+
+
+    function updateThemeButton() {
+
+      if (
+        document.documentElement
+          .classList
+          .contains("dark")
+      ) {
+
+        themeToggle.textContent = "☀";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to light mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to light mode"
+        );
+
+      } else {
+
+        themeToggle.textContent = "☾";
+
+        themeToggle.setAttribute(
+          "aria-label",
+          "Switch to dark mode"
+        );
+
+        themeToggle.setAttribute(
+          "title",
+          "Switch to dark mode"
+        );
+
+      }
+
+    }
+
+
+    updateThemeButton();
+
+
+    themeToggle.addEventListener(
+      "click",
+      function () {
+
+        document.documentElement
+          .classList
+          .toggle("dark");
+
+
+        if (
+          document.documentElement
+            .classList
+            .contains("dark")
+        ) {
+
+          localStorage.setItem(
+            "theme",
+            "dark"
+          );
+
+        } else {
+
+          localStorage.setItem(
+            "theme",
+            "light"
+          );
+
+        }
+
+
+        updateThemeButton();
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
