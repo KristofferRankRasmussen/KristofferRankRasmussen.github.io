@@ -7,22 +7,79 @@
 
   <title>Kristoffer Rank Rasmussen</title>
 
+  <!-- Apply the saved theme before the page is displayed -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (
+        savedTheme === "dark" ||
+        (!savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --background: #ffffff;
+      --text: #555555;
+      --heading: #555555;
+      --border: #e5e5e5;
+
+      --nav: #078d55;
+      --nav-active: #075f3d;
+
+      --hero-start: #0d3b2e;
+      --hero-end: #2ca56b;
+
+      --footer: #888888;
+    }
+
+    /* Dark mode */
+    html.dark {
+      --background: #111814;
+      --text: #d4d9d6;
+      --heading: #f0f2f1;
+      --border: #34443c;
+
+      --nav: #63c991;
+      --nav-active: #a1e0bd;
+
+      --hero-start: #071f18;
+      --hero-end: #17633f;
+
+      --footer: #9aa59f;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #555;
-      background: white;
+      color: var(--text);
+      background: var(--background);
       line-height: 1.7;
+
+      transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
     }
 
     /* Header */
     .hero {
-      background: linear-gradient(120deg, #0d3b2e, #2ca56b);
+      position: relative;
+
+      background: linear-gradient(
+        120deg,
+        var(--hero-start),
+        var(--hero-end)
+      );
+
       color: white;
       text-align: center;
       padding: 70px 20px 75px;
@@ -33,6 +90,7 @@
       font-size: 54px;
       font-weight: 600;
       letter-spacing: 0.5px;
+      color: white;
     }
 
     .hero p {
@@ -41,6 +99,38 @@
       color: rgba(255, 255, 255, 0.8);
       max-width: none;
       text-align: center;
+    }
+
+    /* Day / night button */
+    .theme-toggle {
+      position: absolute;
+      top: 24px;
+      right: 30px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
+
+      font-size: 21px;
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.20);
+      transform: scale(1.05);
     }
 
     /* Main page width */
@@ -52,25 +142,25 @@
 
     /* Navigation */
     nav {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid var(--border);
       padding: 30px 0 25px;
     }
 
     nav a {
       display: inline-block;
       margin-right: 35px;
-      color: #078d55;
+      color: var(--nav);
       text-decoration: none;
       font-size: 19px;
     }
 
     nav a:hover {
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
     nav a.active {
       font-weight: 600;
-      color: #075f3d;
+      color: var(--nav-active);
     }
 
     /* Main content */
@@ -80,14 +170,14 @@
     }
 
     h2 {
-      color: #555;
+      color: var(--heading);
       font-size: 27px;
       margin-top: 0;
       margin-bottom: 30px;
     }
 
     h3 {
-      color: #555;
+      color: var(--heading);
       font-size: 21px;
       margin-top: 40px;
       margin-bottom: 15px;
@@ -121,10 +211,10 @@
 
     /* Footer */
     footer {
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid var(--border);
       padding: 25px 0 40px;
       font-size: 14px;
-      color: #888;
+      color: var(--footer);
     }
 
     /* Mobile */
@@ -139,6 +229,14 @@
       }
 
       .hero p {
+        font-size: 19px;
+      }
+
+      .theme-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
         font-size: 19px;
       }
 
@@ -175,8 +273,19 @@
 
   <!-- Header -->
   <header class="hero">
+
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Switch between light and dark mode"
+      title="Switch between light and dark mode">
+      ☾
+    </button>
+
     <h1>Kristoffer Rank Rasmussen</h1>
     <p>Personal homepage</p>
+
   </header>
 
 
@@ -245,6 +354,39 @@
     </footer>
 
   </div>
+
+
+  <!-- Day / night mode -->
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+
+    function updateThemeButton() {
+      if (document.documentElement.classList.contains("dark")) {
+        themeToggle.textContent = "☀";
+        themeToggle.setAttribute("aria-label", "Switch to light mode");
+        themeToggle.setAttribute("title", "Switch to light mode");
+      } else {
+        themeToggle.textContent = "☾";
+        themeToggle.setAttribute("aria-label", "Switch to dark mode");
+        themeToggle.setAttribute("title", "Switch to dark mode");
+      }
+    }
+
+    updateThemeButton();
+
+    themeToggle.addEventListener("click", function () {
+
+      document.documentElement.classList.toggle("dark");
+
+      if (document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+
+      updateThemeButton();
+    });
+  </script>
 
 </body>
 
